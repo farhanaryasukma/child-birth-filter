@@ -6,14 +6,22 @@ import "react-datepicker/dist/react-datepicker.css";
 
 // CSS Modules, react-datepicker-cssmodules.css
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
+import axios from "axios";
 
 export default function CalendarPicker() {
-  const [startDate, setStartDate] = useState(new Date("2014/02/08"));
-  const [endDate, setEndDate] = useState(new Date("2014/02/10"));
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const handeClick = () => {
+    axios.post("http://localhost:3001/filter", {
+      startDate: startDate,
+      endDate: endDate
+    })
+  }
   return (
     <div className="container">
-      <h5>date picker</h5>
-      <div className="d-flex">
+      <h5 className="justify-content-center ">date picker</h5>
+      <div className="d-flex justify-content-center">
+        <p>start</p>
         <DatePicker
           selected={startDate}
           onChange={(date) => setStartDate(date)}
@@ -24,6 +32,7 @@ export default function CalendarPicker() {
           showMonthDropdown={true}
           scrollableYearDropdown={true}
         />
+        <h6>until</h6>
         <DatePicker
           selected={endDate}
           onChange={(date) => setEndDate(date)}
@@ -36,6 +45,7 @@ export default function CalendarPicker() {
           scrollableYearDropdown={true}
         />
       </div>
+      <button onClick={handeClick}>go</button>
     </div>
   );
 }

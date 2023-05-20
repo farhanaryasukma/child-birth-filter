@@ -1,42 +1,50 @@
+import { useState } from "react";
 export default function Filter() {
+  const [isCheck, setIscheck] = useState(false)
+  const [babyCondition, setBabyCondition] = useState(["healthy", "disabled", "stillborn"]);
+
+  const handleCheckboxChange = () => {
+    setIscheck(!isCheck)
+  };
   return (
-    <div className="container border border-primary rounded-3">
+    <div className="container border-top">
       <form action="">
       <h5>baby condition</h5>
         <div className="form-check">
           <input
             className="form-check-input"
             type="checkbox"
-            value=""
-            id="flexCheckDefault"
+            value="healthy"
+            id="healthy"
+            checked={isCheck}
+            onChange={handleCheckboxChange}
           >
           </input>
-          <label className="form-check-label" for="flexCheckDefault">
-            alive
+          <label className="form-check-label" for="healthy">
+            healthy
           </label>
         </div>
         <div className="form-check">
           <input
             className="form-check-input"
             type="checkbox"
-            value=""
+            value="disabled"
             id="disabled"
           >
           </input>
           <label className="form-check-label" for="disabled">
-            cacat
+            disabled
           </label>
         </div>
         <div className="form-check">
           <input
             className="form-check-input"
             type="checkbox"
-            value=""
-            id="death"
-            checked
+            value="stillbirth"
+            id="stillbirth"
           >
           </input>
-          <label className="form-check-label" for="death">
+          <label className="form-check-label" for="stillbirth">
             stillbirth
           </label>
         </div>
@@ -45,7 +53,7 @@ export default function Filter() {
           <input
             className="form-check-input"
             type="checkbox"
-            value=""
+            value="boy"
             id="boy"
             
           >
@@ -58,7 +66,7 @@ export default function Filter() {
           <input
             className="form-check-input"
             type="checkbox"
-            value=""
+            value="girl"
             id="girl"
             
           >
@@ -72,7 +80,7 @@ export default function Filter() {
           <input
             className="form-check-input"
             type="checkbox"
-            value=""
+            value="below-20"
             id="below-20"
           >
           </input>
@@ -85,10 +93,10 @@ export default function Filter() {
             className="form-check-input"
             type="checkbox"
             value=""
-            id="below-20"
+            id="20-25"
           >
           </input>
-          <label className="form-check-label" for="below-20">
+          <label className="form-check-label" for="20-25">
             <p>20-25</p>
           </label>
         </div>
@@ -97,10 +105,10 @@ export default function Filter() {
             className="form-check-input"
             type="checkbox"
             value=""
-            id="below-20"
+            id="25-30"
           >
           </input>
-          <label className="form-check-label" for="below-20">
+          <label className="form-check-label" for="25-30">
             <p>25-30</p>
           </label>
         </div>
@@ -109,10 +117,10 @@ export default function Filter() {
             className="form-check-input"
             type="checkbox"
             value=""
-            id="below-20"
+            id="30-35"
           >
           </input>
-          <label className="form-check-label" for="below-20">
+          <label className="form-check-label" for="30-35">
             <p>30-35</p>
           </label>
         </div>
@@ -121,10 +129,10 @@ export default function Filter() {
             className="form-check-input"
             type="checkbox"
             value=""
-            id="below-20"
+            id="above 35"
           >
           </input>
-          <label className="form-check-label" for="below-20">
+          <label className="form-check-label" for="above 35">
             <p>above 35</p>
           </label>
         </div>
@@ -133,11 +141,11 @@ export default function Filter() {
           <input
             className="form-check-input"
             type="checkbox"
-            value=""
-            id="below-20"
+            value="normal"
+            id="normal"
           >
           </input>
-          <label className="form-check-label" for="below-20">
+          <label className="form-check-label" for="normal">
             <p>normal</p>
           </label>
         </div>
@@ -145,11 +153,11 @@ export default function Filter() {
           <input
             className="form-check-input"
             type="checkbox"
-            value=""
-            id="below-20"
+            value="support"
+            id="support"
           >
           </input>
-          <label className="form-check-label" for="below-20">
+          <label className="form-check-label" for="support">
             <p>with support</p>
           </label>
         </div>
@@ -157,11 +165,11 @@ export default function Filter() {
           <input
             className="form-check-input"
             type="checkbox"
-            value=""
-            id="below-20"
+            value="c-section"
+            id="c-section"
           >
           </input>
-          <label className="form-check-label" for="below-20">
+          <label className="form-check-label" for="c-section">
             <p>c-section</p>
           </label>
         </div>
@@ -169,11 +177,11 @@ export default function Filter() {
           <input
             className="form-check-input"
             type="checkbox"
-            value=""
-            id="below-20"
+            value="waterbirth"
+            id="waterbirth"
           >
           </input>
-          <label className="form-check-label" for="below-20">
+          <label className="form-check-label" for="waterbirth">
             <p>waterbirth</p>
           </label>
         </div>
@@ -182,11 +190,11 @@ export default function Filter() {
           <input
             className="form-check-input"
             type="checkbox"
-            value=""
-            id="below-20"
+            value="full"
+            id="full"
           >
           </input>
-          <label className="form-check-label" for="below-20">
+          <label className="form-check-label" for="full">
             <p>full-term labour</p>
           </label>
         </div>
@@ -194,11 +202,11 @@ export default function Filter() {
           <input
             className="form-check-input"
             type="checkbox"
-            value=""
-            id="below-20"
+            value="preterm"
+            id="preterm"
           >
           </input>
-          <label className="form-check-label" for="below-20">
+          <label className="form-check-label" for="preterm">
             <p>preterm labour</p>
           </label>
         </div>
@@ -206,12 +214,12 @@ export default function Filter() {
           <input
             className="form-check-input"
             type="checkbox"
-            value=""
-            id="below-20"
+            value="postterm"
+            id="postterm"
           >
           </input>
-          <label className="form-check-label" for="below-20">
-            <p>post-term labour</p>
+          <label className="form-check-label" for="postterm">
+            <p>postterm labour</p>
           </label>
         </div>
       </form>
