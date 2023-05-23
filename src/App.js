@@ -26,11 +26,9 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <DatePicker />
-      <div className="container border border-primary">
-        <FilterButton />
-        <ResetButton />
         <Filter />
+        {/* <DatePicker /> */}
+      <div className="container border border-primary">
       </div>
         <Table user={user} />
       </div>
