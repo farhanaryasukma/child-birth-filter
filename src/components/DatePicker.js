@@ -11,7 +11,7 @@ import axios from "axios";
 export default function CalendarPicker(onPropChange) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  const handeClick = () => {
+  const handleChangeDate = () => {
     axios.post("http://localhost:3001/filter", {
       startDate: startDate,
       endDate: endDate
@@ -45,7 +45,7 @@ export default function CalendarPicker(onPropChange) {
           scrollableYearDropdown={true}
         />
       </div>
-      <button onClick={handeClick}>go</button>
+      <button onClick={handleChangeDate}>go</button>
     </div>
   );
 }

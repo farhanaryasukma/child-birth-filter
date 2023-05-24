@@ -2,35 +2,46 @@ import { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import axios from "axios";
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker-cssmodules.css";
+
+
 export default function Filter({onPropChange}) {
   const handleReset = (resetForm) => {
     resetForm(); // Reset the form values
   };
+ 
   return (
     <div className="mb-5 border pb-5 ps-4 pe-4">
       <h1>Filter</h1>
+      
     <Formik
       initialValues={{
         gender: [],
         condition:[],
         motherAge: [],
         method: [],
-        labourRange: []
+        labourRange: [],
+        startDate: new Date(),
+        endDate: new Date()
       }}
       
       onSubmit={async (values) => {
         try {
-          console.log(values)
+          // console.log(values)
           const response = await axios.get('http://localhost:3001/user', {
             params: {
               gender: values.gender,
               condition: values.condition,
               motherAge: values.motherAge,
               method: values.method,
-              labourRange: values.labourRange
+              labourRange: values.labourRange,
+              startDate: values.startDate,
+              endDate: values.endDate
             }
           });
-          console.log('API response:', response.data);
+          // console.log('API response:', response.data);
           const dataFiltered = response.data;
           onPropChange(dataFiltered)
 
@@ -39,8 +50,34 @@ export default function Filter({onPropChange}) {
         }
       }}
     >
-      {({ values, resetForm }) => (
+      {({ values, resetForm, setFieldValue }) => (
         <Form>
+      <h5 className="justify-content-center ">date picker</h5>
+      <div className="d-flex justify-content-center">
+        <p>start</p>
+        <DatePicker
+          selected={values.startDate}
+          onChange={(date) => setFieldValue('startDate', date)}
+          selectsStart
+          startDate={values.startDate}
+          endDate={values.endDate}
+          showYearDropdown={true}
+          showMonthDropdown={true}
+          scrollableYearDropdown={true}
+        />
+        <h6>until</h6>
+        <DatePicker
+          selected={values.endDate}
+          onChange={(dateEnd) => setFieldValue('endDate', dateEnd)}
+          selectsEnd
+          startDate={values.startDate}
+          endDate={values.endDate}
+          minDate={values.startDate}
+          showYearDropdown={true}
+          showMonthDropdown={true}
+          scrollableYearDropdown={true}
+        />
+      </div>
           <div className="mb-3 d-flex flex-column" role="group">
             <h6>Baby's Gender</h6>
             <label>
