@@ -2,10 +2,13 @@ import { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import axios from "axios";
 
-export default function Filter() {
-
+export default function Filter({onPropChange}) {
+  const handleReset = (resetForm) => {
+    resetForm(); // Reset the form values
+  };
   return (
-    <div>
+    <div className="mb-5 border pb-5 ps-4 pe-4">
+      <h1>Filter</h1>
     <Formik
       initialValues={{
         gender: [],
@@ -14,9 +17,11 @@ export default function Filter() {
         method: [],
         labourRange: []
       }}
+      
       onSubmit={async (values) => {
         try {
-          const response = await axios.get('/user', {
+          console.log(values)
+          const response = await axios.get('http://localhost:3001/user', {
             params: {
               gender: values.gender,
               condition: values.condition,
@@ -25,12 +30,16 @@ export default function Filter() {
               labourRange: values.labourRange
             }
           });
+          console.log('API response:', response.data);
+          const dataFiltered = response.data;
+          onPropChange(dataFiltered)
+
         } catch (err) {
           console.log(err)
         }
       }}
     >
-      {({ values }) => (
+      {({ values, resetForm }) => (
         <Form>
           <div className="mb-3 d-flex flex-column" role="group">
             <h6>Baby's Gender</h6>
@@ -73,8 +82,8 @@ export default function Filter() {
               25-29
             </label>
             <label>
-              <Field type="checkbox" name="motherAge" value="30-35" />
-              30-35
+              <Field type="checkbox" name="motherAge" value="30-34" />
+              30-34
             </label>
             <label>
               <Field type="checkbox" name="motherAge" value="above-35" />
@@ -116,6 +125,7 @@ export default function Filter() {
             </label>
           </div>
           <button className="btn btn-primary" type="submit">set filter</button>
+          <button className="btn btn-danger" type="button" onClick={() => handleReset(resetForm)}>Reset Filter</button>
         </Form>
       )}
     </Formik>

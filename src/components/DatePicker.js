@@ -8,7 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import axios from "axios";
 
-export default function CalendarPicker() {
+export default function CalendarPicker(onPropChange) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const handeClick = () => {

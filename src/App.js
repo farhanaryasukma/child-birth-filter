@@ -23,11 +23,17 @@ function App() {
 
     fetchData();
   }, []);
+
+  const handleFilterChange = (propValue) => {
+    // Do something with the prop value received from the child component
+    setUser(propValue.filterUser);
+  };
+  // handleChildProp()
   return (
     <div className="App">
       <div className="container">
-        <Filter />
-        {/* <DatePicker /> */}
+        <Filter onPropChange={handleFilterChange} />
+        <DatePicker />
       <div className="container border border-primary">
       </div>
         <Table user={user} />
