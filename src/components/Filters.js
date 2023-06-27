@@ -14,7 +14,7 @@ import {
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-export default function Filter({ onPropChange, ref }) {
+export default function Filter({ onPropChange }) {
   const [open, setOpen] = useState(false);
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
@@ -56,7 +56,7 @@ export default function Filter({ onPropChange, ref }) {
             onSubmit={async (values) => {
               try {
                 // console.log(values)
-                const response = await axios.get("http://localhost:3001/user", {
+                const response = await axios.get("http://localhost:3002/user", {
                   params: {
                     gender: values.gender,
                     condition: values.condition,

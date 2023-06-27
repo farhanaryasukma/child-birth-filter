@@ -1,6 +1,6 @@
 export default function Table( {user} ) {
   return (
-    <table className="text-center text-sm  border-collapse table-auto overflow-hidden border border-slate-500 mx-1">
+    <table className="text-center text-md  border-collapse table-auto border border-slate-500 mx-auto">
       <thead>
         <tr>
           <th className="border border-slate-600">Mother ID</th>
